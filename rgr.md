@@ -45,3 +45,28 @@ func BenchmarkPrefixToInfix(b *testing.B) {
 ![](./assets/img/data-l2.png)
 
 Як бачимо з графіку вище, всі точки не розташовуються рівно по лінії, це зумовлено тим, що хоч ми й запускали бенчмарк на машині з досить малою кількістю процесів, але все ж запуск відбувавсь не в ідеальних умовах (як бачимо зі списку процесів, є мережеві процеси і ще інші, тому цілком можливо що в момент запуску бенчмарку ми наприклад почати зчитувати дані з якогось сокету, тощо). Але можна сказати, аналізуючи результат графіку, що результат є наближеним до лінійного. 
+
+## Додатки
+### Додаток 1
+Сирцевий код аналізу лінійної регресії на `python`
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy.stats as st
+sns.set_style('whitegrid')
+
+data = pd.read_csv("benchmark1.csv")
+sns.lineplot(x=data["Operators"], y=data["Time"], label="Benchmark data")
+
+lr = st.linregress(data.iloc[:, 0], data.iloc[:, 1])
+line = data["Operators"] * lr.slope + lr.intercept
+sns.lineplot(x=data["Operators"], y=line, label="Linear regression")
+
+plt.title(f"Нахил прямої: {lr.slope:.5f}\nТочка перетину: {lr.intercept:.5f} \nКоефiцiєнт кореляцiї: {lr.rvalue:.5f}")
+plt.ylabel("Time")
+plt.xlabel("Operators")
+plt.legend()
+plt.get_current_fig_manager().set_window_title('Benchmark results')
+plt.show()
+```
