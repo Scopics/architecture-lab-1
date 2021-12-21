@@ -68,7 +68,6 @@ func BenchmarkPrefixToInfix(b *testing.B) {
 Пакет включає в себе наступні компоненти:
 
 - Метод `parse()` розбиває вхідний рядок на команду та її параметри, і повертає сформовану структуру типу `engine.Command`.
-
 - Команди, що імплементують `engine.Command` і містять метод, що додає відповідну дію до event loop, що імплементує `Handler`.
 
 #### Пакет engine
@@ -123,7 +122,7 @@ lr = st.linregress(data.iloc[:, 0], data.iloc[:, 1])
 line = data["Operators"] * lr.slope + lr.intercept
 sns.lineplot(x=data["Operators"], y=line, label="Linear regression")
 
-plt.title(f"Нахил прямої: {lr.slope:.5f}\nТочка перетину: {lr.intercept:.5f} \nКоефiцiєнт кореляцiї: {lr.rvalue:.5f}")
+plt.title(f"Нахил прямої: {lr.slope:.2e}\nТочка перетину: {lr.intercept:.2e} \nКоефiцiєнт кореляцiї: {lr.rvalue:.3f}")
 plt.ylabel("Time")
 plt.xlabel("Operators")
 plt.legend()
