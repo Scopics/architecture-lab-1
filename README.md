@@ -1,5 +1,9 @@
 # architecture-lab-1
 
+### Link to RGR
+
+- [RGR](https://github.com/Scopics/architecture-lab-1/blob/main/rgr.md)
+
 # Contributors
 
 - [Maxim Govoruha](https://github.com/MaksGovor)
